@@ -7,6 +7,7 @@
         <el-button
           type="success btn"
           style="margin-left: 50px"
+          @click="onClick"
         >保存</el-button>
       </div>
     </header>
@@ -27,7 +28,7 @@
           </el-input>
 
         </div>
-        <div class="search toal">
+        <!-- <div class="search toal">
           <div class="return">
             <i class="el-icon-back"></i>
             <i class="el-icon-right"></i>
@@ -39,9 +40,10 @@
             class="el-icon-pie-chart"
             style="color:red"
           ></i>
-        </div>
-        <div class="search text">
-          春游，古称 <span class="blue">踏青</span> ，是一种古老的传统族 <span class="blue">民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
+        </div> -->
+        <!-- <div class="search text"> -->
+          <Editorbar></Editorbar>
+          <!-- 春游，古称 <span class="blue">踏青</span> ，是一种古老的传统族 <span class="blue">民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
           就是唐代人们春游的盛况。 春季郊野，万木吐翠，芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
           防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争明，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
@@ -49,8 +51,8 @@
           防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，<span class="red">百鸟争鸣</span>，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
           防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋.
-        </div>
+          开阔，疲劳消除，精神振奋. -->
+        <!-- </div> -->
         <div class="search">
           <div class="header">
             <i class="el-icon-copy-document blue"></i>
@@ -217,18 +219,49 @@
       </div>
 
     </main>
-
+    
   </div>
 </template>
 
 <script>
+import Editorbar from './editor'
 export default {
-  name: 'HelloWorld',
+  name: 'helloworld',
+  components: {
+    Editorbar,
+  },
+ 
   data () {
     return {
       input: '',
+      client: {
+        clientX: '',
+        clientY: ''
+      },
       value2:'',
-      textarea: '知人者智，自知者明。胜人者有力，自胜者强。'
+      bg: {
+        left: ''
+      },
+      textarea: '知人者智，自知者明。胜人者有力，自胜者强。',
+      editor: {
+        info: `春游，古称 <span style='color:blue'>踏青</span> ，是一种古老的传统族 <span style='color:blue'>民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
+          就是唐代人们春游的盛况。 春季郊野，万木吐翠，芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
+          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
+          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争明，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
+          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
+          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，<span style='color:red;'>百鸟争鸣</span>，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
+          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
+          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
+          开阔，疲劳消除，精神振奋.`,
+        isClear: false
+      }
+    }
+  },
+  methods: {
+    onClick () {
+       let text = window.getSelection().toString()
+       console.log(text);
+       
     }
   },
 }
@@ -367,7 +400,7 @@ header {
   margin-bottom: 21px;
   top: 0;
   left: 0;
-  z-index: 10;
+  z-index: 100000;
 }
 header .left {
   width: 300px;
@@ -478,5 +511,14 @@ main .right {
 }
 .footer {
   margin: 40px 0;
+  text-align: center;
+}
+.bg {
+  width: 100px;
+  height: 100px;
+  background: red;
+  position: fixed;
+  top: 200px;
+  left: 100px;
 }
 </style>

@@ -42,7 +42,7 @@
           ></i>
         </div> -->
         <!-- <div class="search text"> -->
-          <Editorbar></Editorbar>
+          <Editorbar @content='content' :value='editor.info'></Editorbar>
           <!-- 春游，古称 <span class="blue">踏青</span> ，是一种古老的传统族 <span class="blue">民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
           就是唐代人们春游的盛况。 春季郊野，万木吐翠，芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
@@ -186,17 +186,7 @@
             春季旅游
             <div>2019-04-12   阅读 500</div>
           </div>
-          <div class="right-text right-mb">
-            春游，古称 <span class="blue">踏青</span> ，是一种古老的传统族 <span class="blue">民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
-          就是唐代人们春游的盛况。 春季郊野，万木吐翠，芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
-          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争明，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
-          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，<span class="red">百鸟争鸣</span>，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
-          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋.
-          </div>
+          <div class="right-text right-mb" v-html="contents" id="container"></div>
           <div class="right-mb ">
             <div class="pic1"></div>
           </div>
@@ -242,26 +232,34 @@ export default {
       bg: {
         left: ''
       },
+      contents: '',
       textarea: '知人者智，自知者明。胜人者有力，自胜者强。',
       editor: {
-        info: `春游，古称 <span style='color:blue'>踏青</span> ，是一种古老的传统族 <span style='color:blue'>民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
+        info: `<div> 春游，古称 <span data='yes' style='color: blue;'>踏青</span> ，是一种古老的传统族 <span style='color: blue;'>民俗</span> 文体活动，古时一般在上巳节，清明节。“三月三日气象新，长安水边多丽人。”杜甫描绘的
           就是唐代人们春游的盛况。 春季郊野，万木吐翠，芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
           防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争明，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
-          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，<span style='color:red;'>百鸟争鸣</span>，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
+          防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，<span style='color: red;text-decoration: underline;'>百鸟争鸣</span>，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
           开阔，疲劳消除，精神振奋，还能促进细胞的新陈代谢，改善血液循环，增加腰腿肌肉的活动，加强心脏和肺的功能，可降低血脂、血压、
           防治心血管病，因而，春游具有特殊的保健作用.芳草茵茵，百鸟争鸣，阳光和熙，空气清新，置身于这如诗如画的环境中，能使人心胸
-          开阔，疲劳消除，精神振奋.`,
+          开阔，疲劳消除，精神振奋.</div>`,
         isClear: false
       }
     }
+  },
+  created () {
+    this.contents = this.editor.info;
   },
   methods: {
     onClick () {
        let text = window.getSelection().toString()
        console.log(text);
        
+    },
+    content(val) {
+      // this.editor.info = val
+      this.contents = val
     }
   },
 }
@@ -454,6 +452,9 @@ main .right {
   top: 50px;
   left: -60px;
 }
+.tool div {
+  text-align: center;
+}
 .search .right-text-header {
   text-align: left;
   font-size: 20px;
@@ -472,7 +473,7 @@ main .right {
 	line-height: 30px;
 	color: #333333;
   text-align: left;
-  text-indent: 2em; 
+  /* text-indent: 2em;  */
   padding: 20px;
 }
 .right-mb{
@@ -520,5 +521,16 @@ main .right {
   position: fixed;
   top: 200px;
   left: 100px;
+}
+</style>
+<style>
+.right blockquote {
+    border-left: 4px solid #ccc;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    padding-left: 16px;
+    margin-left: 0px;
+    margin-inline-end: 10px;
+    text-indent: 0;
 }
 </style>
